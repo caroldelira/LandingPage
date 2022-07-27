@@ -1,0 +1,367 @@
+/*----------------- VARIÁVEIS ----------------------*/
+:root {
+  --primary-color: #0a1128;
+  --secondary-color: crimson;
+  --color-white: #ffffff;
+  --light-gray-color: #eee;
+  --gap: 30px; /*Separados de linhas e colunas*/
+}
+
+/*----------------- ELEMENTS ----------------------*/
+
+/*zerar configuração*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /*reset para form*/
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  line-height: 25px; /*espaço entre uma linha e outra*/
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+  font-size: 60px;
+  text-transform: uppercase;
+}
+h2 {
+  font-size: 50px;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+  line-height: 60px;
+}
+h3 {
+  font-size: 50px;
+  margin-bottom: 40px;
+}
+h4 {
+  font-size: 45px;
+}
+h5 {
+  font-size: 40px;
+}
+h6 {
+  font-size: 35px;
+}
+
+a {
+  text-decoration: none;
+}
+
+p{
+  margin-bottom: 35px;
+}
+/*----------------- CLASSES ----------------------/*
+
+/* Itens centralizados no meio da página */
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--gap);
+}
+
+/* Background padrão */
+.main-bg {
+  background-image: url('/img/main.bg.svg');
+  background-size: cover;
+  background-position: center center;
+  color: var(--color-white);
+}
+
+/* Background branco */
+.main-white-bg {
+  background: var(--color-white);
+  color: var(--primary-color);
+}
+
+/* Classe seção pra definir o tamanho de cada seção */
+.section {
+  min-height: 100vh;
+}
+
+body .full-width{
+  width: 100%;
+  flex: 1 1 100%;
+  
+}
+
+/*----------------- MENUS ----------------------*/
+
+/* Fixar menu e colocar o background, isso no aisde que é o container geral */
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-bottom: 1px solid var(--light-gray-color);
+  z-index: 1;
+}
+
+/* na seção do menu colocamos os itens lado a lado com o display flex */
+.menu-content {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* Colocamos a lista lado a lado com o display flex */
+.menu ul {
+  list-style: none;
+  display: flex;
+}
+
+/* Configurar diretamente o a e não o li, o display flex serve para colocar o a em bloco, pq por padrão ele vem em linha*/
+.menu ul li a {
+  display: block;
+  padding: 20px;
+  font-size: 18px;
+  position: relative; /* essa posição relativa vai servir pra alinhar a borda crimson apenas acima dos links*/
+}
+
+/* Linha abixo dos links do menu*/
+.menu ul li a::after {
+  content: '';
+  position: absolute;
+  bottom: 10px; /*distancia da base*/
+  left: 50%; /*distancia da borda, aqui ficou 25%, mas pra ficar o efeito de aparecer do maio para as pontas o left vai iniciar com 50% e passar para 25% no hover*/
+  width: 0; /*comprimento da borda, aqui ficou 50% porem só será usado no hover, então essa parte ficará 0, para a linha ficar off enquanto o mouse nao passar nela*/
+  height: 2px; /*altura da borda*/
+  background: var(--secondary-color);
+  transition: all 300ms ease-in-out; /*transição para o hover*/
+}
+
+/*esse efeito acontece quando passa o mouse em cima do elemento indicado no after*/
+.menu ul li a:hover::after {
+  left: 25%;
+  width: 50%;
+}
+
+/*Lugar da Logo no canto direito do menu, caso seja um img, ela pode ser incluida dentro do H1*/
+.menu h1 {
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--primary-color);
+  padding: 20px;
+}
+
+/*Espaço criado para o texto do H1 não ficar escondido atrás do menu, porque a posição fixa sobrepões os elementos por tras
+.menu-spacing{
+  height: 65px;
+}*/
+
+/*----------------- 1 SEÇÃO - INTRO ----------------------*/
+
+.intro-content {
+  /* position: relative;
+    top: -65px; aqui foi retirado o espaçamento utilizado na div do menu para que ele nao fica em cima dos textos iniciais --- percebi que isso anulou a div de espaço criada no menu, portanto retirei a div e o espaço usado*/
+  display: grid;
+  grid-template-columns: 1fr 1.5fr; /*Cada 1fr é um fragmento que separa, ou seja, uma coluna no grid, as duas divs estão separadas em colunas, dessa forma a primeira coluna tem o tamanho de 1fr e a segunda de 1.5fr*/
+  gap: var(--gap);
+  height: 100vh; /*Aqui o grid fica da altura da seção para poder alinhar os elementos e textos ao centro da seção*/
+}
+
+/*Foi adicionada as duas div da primeira seção, para se adaptarem ao grid, sempre com seus conteudos no centro*/
+.intro-text-content,
+.intro-img {
+  display: flex; /*o texto dessa div fica lado a lado e vira um bloco*/
+  flex-flow: column wrap; /*o texto volta a fica um abaixo do outro mas agora como bloco para poder alinhar o lugar*/
+  justify-content: center;
+}
+
+/*Imagem Inicial*/
+.intro-img img {
+  max-width: 100%;
+  height: auto;
+}
+
+/*----------------- 2 SEÇÃO - TOP3 ----------------------*/
+
+.top3-content {
+  position: relative; /*Preciso colocar position relative para que ele dê a margem do topo, caso contrario ele fica preso ao topo*/
+  top: 65px;
+  height: 100vh; /*Sempre colocar o conteudo do tamanho da seção*/
+  text-align: center;
+  width: 640px;
+}
+
+
+/*----------------- 3 SEÇÃO - DESCRIPTION----------------------*/
+
+.description-content{
+  height: 100vh;
+  position: relative;
+  top: 65px;
+}
+
+.description-content h2{
+  margin-bottom: 20px;
+}
+
+.description-content p{
+margin-bottom: 120px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /*criou tres colunas do mesmo tamanho de 1fr*/
+  gap: var(--gap); /*margem das linhas*/
+  counter-reset: grid-counter; /*contador criado para incluir os numeros 1 2 e 3 antes dos meus h3 na grid dessa seção*/
+}
+
+.grid h3{
+  font-size: 30px;
+  position: relative;
+  padding-left: 70px;
+  
+}
+
+/*elementos incluidos antes do meu h3*/
+.grid h3::before{
+  counter-increment: grid-counter; /*pega o contador criado na grid e informa aqui*/
+  content: counter(grid-counter); /*nessa parte eu inclui a contagem no grid*/
+  position: absolute; /*meus numeros tem posição absoluta em relacao ao pai h3 que informei a posicao relativa - caso contrario meus elementos seriam relativos a seçãoc completa e ficariam alinhados no topo da seção*/
+  font-size: 80px;
+  font-style: italic;
+  top: 0;
+  left: 0;
+  transform: rotate(5deg);
+  font-weight: 100;
+  
+}
+
+/*----------------- 4 SEÇÃO - GALLERY----------------------*/
+
+.gallery-content{
+  height: 165vh;
+  position: relative;
+  top: 65px;
+}
+.gallery-content h2{
+  margin-bottom: 20px;
+}
+.gallery-content p{
+  margin-bottom: 50px;
+}
+
+.gallery-img{
+  width: 100%;
+  max-width: 360px;
+  max-height: 360px;
+  overflow: hidden;
+}
+
+/*organizando minha imagem pra receber o hover*/
+.gallery-img img{
+  transition: all 300ms ease-in-out;
+}
+.gallery-img img:hover{
+  transform: translate(-3%, 3%) scale(1.2) rotate(5deg);
+}
+
+/*----------------- 5 SEÇÃO - CONTACT ----------------------*/
+
+.contact-content {
+  /* position: relative;
+    top: -65px; aqui foi retirado o espaçamento utilizado na div do menu para que ele nao fica em cima dos textos iniciais --- percebi que isso anulou a div de espaço criada no menu, portanto retirei a div e o espaço usado*/
+  display: grid;
+  grid-template-columns: 1fr 1.5fr; /*Cada 1fr é um fragmento que separa, ou seja, uma coluna no grid, as duas divs estão separadas em colunas, dessa forma a primeira coluna tem o tamanho de 1fr e a segunda de 1.5fr*/
+  gap: var(--gap);
+  height: 100%; /*Aqui o grid fica da altura da seção para poder alinhar os elementos e textos ao centro da seção*/
+}
+
+/*Foi adicionada as duas div da primeira seção, para se adaptarem ao grid, sempre com seus conteudos no centro*/
+.contact-text-content,
+.contact-img {
+  display: flex; /*o texto dessa div fica lado a lado e vira um bloco*/
+  flex-flow: column wrap; /*o texto volta a fica um abaixo do outro mas agora como bloco para poder alinhar o lugar*/
+  justify-content: center;
+  width: 300px;
+}
+
+/*Imagem Inicial*/
+.contact-img img {
+  max-width: 100%;
+  height: auto;
+}
+
+.contact-form{
+  grid-column: span 2; /*a linha que está essa classe vai tomar a posição de duas colunas*/
+}
+
+.contact-form, .form-grid{
+  border: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--gap);
+  
+}
+
+.form-grid legend{
+  font-style: italic;
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+.form-group{
+  flex: 1 1 320px;
+
+}
+.form-group label{
+  display: block;
+  margin-bottom: 10px;
+  
+}
+.form-group input, .form-group textarea{
+  border: none;
+  background: var(--light-gray-color);
+  padding: 10px 15px;
+  width: 100%;
+  font-size: 20px;
+  outline: none;
+}
+
+.form-group input:focus, .form-group textarea:focus{
+box-shadow: 0 0 10px 2px var(--secondary-color);
+}
+
+.form-group button{
+  border: 5px solid var(--secondary-color);
+  background: none;
+  color: var(--primary-color);
+  padding: 15px 20px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+}
+
+.form-group button:hover{
+  background: var(--secondary-color);
+  color: var(--color-white);
+}
+
+footer{
+  text-align: center;
+  font-size: 15px;
+  height: 40px;
+  padding: 10px;
+}
+
+footer a{
+  color: var(--color-white);
+}
