@@ -15,12 +15,15 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
+
+    <input id="close-menu" class="close-menu" type="checkbox" area-label="close menu" role="button">
+    <label class="close-menu-label" for="close-menu" title="close-menu"></label>
     <aside class="menu main-white-bg">
       <div class="main-content menu-content">
         <h1>LOGO</h1>
 
         <nav>
-          <ul>
+          <ul onclick="getElementById('close-menu').checked =false;"> <!-- retira o menu após o clique em alguma página-->
             <li><a href="#intro">Intro</a></li>
             <li><a href="#top3">Top 3</a></li>
             <li><a href="#description"> Description</a></li>
@@ -31,7 +34,7 @@
         </nav>
       </div>
     </aside>
-    <!-- <div class="menu-spacing"></div> Div retirada ppor se tornar inutilizada no css!-->
+    <div class="menu-spacing"></div>
     <section id="intro" class="intro main-bg section">
       <div class="intro-content main-content">
         <div class="intro-text-content">

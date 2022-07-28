@@ -160,20 +160,24 @@ body .full-width{
   padding: 20px;
 }
 
-/*Espaço criado para o texto do H1 não ficar escondido atrás do menu, porque a posição fixa sobrepões os elementos por tras
+/*Espaço criado para o texto do H1 não ficar escondido atrás do menu, porque a posição fixa sobrepões os elementos por tras*/
 .menu-spacing{
-  height: 65px;
-}*/
+  height: 40px;
+}
+
+.close-menu{
+  display: none;
+}
 
 /*----------------- 1 SEÇÃO - INTRO ----------------------*/
 
 .intro-content {
-  /* position: relative;
-    top: -65px; aqui foi retirado o espaçamento utilizado na div do menu para que ele nao fica em cima dos textos iniciais --- percebi que isso anulou a div de espaço criada no menu, portanto retirei a div e o espaço usado*/
+  position: relative;
+    top: 65px; /*aqui foi retirado o espaçamento utilizado na div do menu para que ele nao fica em cima dos textos iniciais --- percebi que isso anulou a div de espaço criada no menu, portanto retirei a div e o espaço usado*/
   display: grid;
   grid-template-columns: 1fr 1.5fr; /*Cada 1fr é um fragmento que separa, ou seja, uma coluna no grid, as duas divs estão separadas em colunas, dessa forma a primeira coluna tem o tamanho de 1fr e a segunda de 1.5fr*/
   gap: var(--gap);
-  height: 100vh; /*Aqui o grid fica da altura da seção para poder alinhar os elementos e textos ao centro da seção*/
+  min-height: 100vh; /*Aqui o grid fica da altura da seção para poder alinhar os elementos e textos ao centro da seção*/
 }
 
 /*Foi adicionada as duas div da primeira seção, para se adaptarem ao grid, sempre com seus conteudos no centro*/
@@ -204,7 +208,7 @@ body .full-width{
 /*----------------- 3 SEÇÃO - DESCRIPTION----------------------*/
 
 .description-content{
-  height: 100vh;
+  min-height: 100vh;
   position: relative;
   top: 65px;
 }
@@ -214,7 +218,7 @@ body .full-width{
 }
 
 .description-content p{
-margin-bottom: 120px;
+margin-bottom: 100px;
 }
 
 .grid {
@@ -248,7 +252,7 @@ margin-bottom: 120px;
 /*----------------- 4 SEÇÃO - GALLERY----------------------*/
 
 .gallery-content{
-  height: 165vh;
+  margin-bottom: 100px;
   position: relative;
   top: 65px;
 }
@@ -282,7 +286,7 @@ margin-bottom: 120px;
   display: grid;
   grid-template-columns: 1fr 1.5fr; /*Cada 1fr é um fragmento que separa, ou seja, uma coluna no grid, as duas divs estão separadas em colunas, dessa forma a primeira coluna tem o tamanho de 1fr e a segunda de 1.5fr*/
   gap: var(--gap);
-  height: 100%; /*Aqui o grid fica da altura da seção para poder alinhar os elementos e textos ao centro da seção*/
+  min-height: 100vh; /*Aqui o grid fica da altura da seção para poder alinhar os elementos e textos ao centro da seção*/
 }
 
 /*Foi adicionada as duas div da primeira seção, para se adaptarem ao grid, sempre com seus conteudos no centro*/
@@ -364,4 +368,83 @@ footer{
 
 footer a{
   color: var(--color-white);
+}
+
+/*----------------- MEDIA QUERY ----------------------*/
+
+@media (max-width: 800px) {
+  .intro-content, .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .menu-spacing{
+    background-color: var(--primary-color);
+  }
+
+  
+.gallery-img {
+  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.gallery-img img{
+  width: 100%;
+}
+
+.description-content p, h3{
+  margin-bottom: 50px;
+  }
+
+.menu{
+  bottom: 0;
+  text-align: center;
+}
+
+.menu-content, .menu-content ul{
+  flex-direction: column;
+  justify-content: center;
+}
+
+.menu-content{
+  height: 100vh;
+}
+
+.menu{
+  display: none;
+}
+
+.close-menu{
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+}
+
+.close-menu-label::after{
+  content: '☰';
+  position: fixed;
+  z-index: 2;
+  top: 1rem;
+  right: 2rem; /*altera a posição do ícone do label pra direita da tela*/
+  background: var(--primary-color);
+  color: var(--color-white);
+  font-size: 2rem;
+  line-height: 2rem; /*a dimensão do menu */
+  width: 2rem;
+  height: 2rem;
+  text-align: center;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+/* × */
+.close-menu:checked~.menu{ /*menu aparece ao ser clicado*/
+  display: block;
+}
+
+.close-menu:checked~.close-menu-label::after {
+  content: '×'; 
+}
+
 }
